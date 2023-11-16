@@ -86,4 +86,6 @@ dependencies:
   - zipp=3.17.0=pyhd8ed1ab_0
   - pandas-profiling
   - ydata-profiling
+  - vegafusion-python-embed>=1.4.0
+  - vegafusion>=1.4.0
 prefix: /Users/oybb/miniconda3/envs/522_group1
