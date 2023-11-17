@@ -12,7 +12,7 @@ Example
 -------
 >>> from DataFetch import fetch_business_license, fetch_econ_indices
 >>> business = fetch_business_license()
->>> raw_econ_index_data_dict = fetch_econ_indices()
+>>> raw_econ_index_data_dict = fetch_econ_indicators()
 
 >>> raw_econ_index_data_dict
 raw_econ_index_data_dict = {
@@ -75,7 +75,7 @@ def customized_filter(index_name, data):
         
     return data[mask].dropna(subset=['REF_DATE', 'VALUE'])
 
-def fetch_econ_indices():
+def fetch_econ_indicators():
     econ_url_dict = {
         'GDP': 'https://www150.statcan.gc.ca/n1/en/tbl/csv/36100434-eng.zip?st=8pJW1bGZ',
         'ConsumerPrice': 'https://www150.statcan.gc.ca/n1/en/tbl/csv/18100256-eng.zip?st=-S3x83UK',

@@ -16,7 +16,7 @@ Example
 >>> business_econ = merge_business_econ_by_year(business, econ)
 """
 
-def business_datacleaning(business, survival_threshold):
+def business_datacleaning(business, survival_threshold=730):
     # Drop rows where ExpiredDate and IssuedDate are NA
     business = business.dropna(subset = ["ExpiredDate", "IssuedDate"])
 
@@ -34,7 +34,7 @@ def business_datacleaning(business, survival_threshold):
     business.sort_values(by='ExpiredDate', ascending=True)
     business = business.drop_duplicates(subset='BusinessName', keep='first')
 
-    # Filter to keep those records where the latest `ExpiredDate` is before or equal to year 2022.
+    # Filter to keep those records where the first `ExpiredDate` is before or equal to year 2022.
     business = business[business['ExpiredDate'] <= dt.date(2022, 12, 31)]
 
     # Adjust format of FOLDERYEAR
