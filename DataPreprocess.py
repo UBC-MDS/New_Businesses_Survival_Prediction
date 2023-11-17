@@ -4,6 +4,17 @@ pd.options.mode.chained_assignment = None  # default='warn'
 import numpy as np
 import datetime as dt
 from functools import reduce
+"""
+Preprocess business_license as dataframe,
+and turn a dictionary storing the economic dataframes into one merged and clean dataframe.
+
+Example
+-------
+>>> from DataPreprocess import *
+>>> business = business_datacleaning(business = business, survival_threshold = 365 * 2)
+>>> econ = econ_datacleaning(raw_econ_index_data_dict)
+>>> business_econ = merge_business_econ_by_year(business, econ)
+"""
 
 def business_datacleaning(business, survival_threshold):
     # Drop rows where ExpiredDate and IssuedDate are NA

@@ -5,6 +5,25 @@ import os
 import pandas as pd
 from collections import defaultdict
 
+"""
+Fetch data via URLs.
+
+Example
+-------
+>>> from DataFetch import fetch_business_license, fetch_econ_indices
+>>> business = fetch_business_license()
+>>> raw_econ_index_data_dict = fetch_econ_indices()
+
+>>> raw_econ_index_data_dict
+raw_econ_index_data_dict = {
+    'GDP': gdp_df,
+    'ConsumerPrice': cp_df,
+    'Employment': employment_df,
+    'InvestmentConstruction': investment_df
+}
+
+"""
+
 def fetch_business_license():
     print('Now loading: business_license data')
     url = 'https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/business-licences/exports/csv?lang=en&timezone=America%2FLos_Angeles&use_labels=true&delimiter=%3B'
