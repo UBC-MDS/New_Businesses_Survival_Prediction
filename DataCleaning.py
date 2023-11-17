@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import datetime as dt
+from functools import reduce
 
 def business_datacleaning(self, business, survival_threshold):
     # Drop rows where ExpiredDate and IssuedDate are NA
@@ -16,9 +17,9 @@ def business_datacleaning(self, business, survival_threshold):
                                 business.groupby('BusinessName')['IssuedDate'].transform('min'))
     business['survival_days'] = pd.to_timedelta(business['survival_days']).dt.days
 
-    # Keep only the newest issued record of each company
+    # Keep only the first issued record of each company (to obtain the year when a company starts it business)
     business.sort_values(by='ExpiredDate', ascending=True)
-    business = business.drop_duplicates(subset='BusinessName', keep='last')
+    business = business.drop_duplicates(subset='BusinessName', keep='first')
 
     # Filter to keep those records where the latest `ExpiredDate` is before or equal to year 2022.
     business = business[business['ExpiredDate'] <= dt.date(2022, 12, 31)]
@@ -31,13 +32,22 @@ def business_datacleaning(self, business, survival_threshold):
     business["survival_status"] = business["survival_status"].astype(int)
     return business
 
-def gdp_datacleaning(gdp):
-    gdp = gdp[gdp['North American Industry Classification System (NAICS)'] == 'All industries [T001]'][['REF_DATE', 'VALUE']]
-    gdp['REF_YEAR'] = gdp['REF_DATE'].apply(lambda x : str(x)[:4])
-    gdp = gdp[gdp['REF_YEAR'] >= 2012]
-    gdp['REF_DATE'] = pd.to_datetime(gdp['REF_DATE'])
-    gdp['REF_YEAR'] = gdp['REF_YEAR'].astype(str)
-    return gdp.rename(columns = {'VALUE': 'GdpValue', 'REF_YEAR': 'FOLDERYEAR'})
+
+def econ_datacleaning(raw_econ_index_data_dict):
+    econList = []
+    for index_name, data in raw_econ_index_data_dict.items():
+        data = data[['REF_DATE', 'VALUE']]
+        data['REF_YEAR'] = data['REF_DATE'].apply(lambda x : int(str(x)[:4]))
+        data = data[data['REF_YEAR'] >= 2012]
+        data['REF_YEAR'] = data['REF_YEAR'].astype(str)
+        data = data.drop(columns=['REF_DATE'])
+        econList.append(data.rename(columns = {'VALUE': f'{index_name}Value', 
+                                                'REF_YEAR': 'FOLDERYEAR'}
+                                    ).groupby('FOLDERYEAR').mean().reset_index())
+        
+    return reduce(lambda df1, df2 : pd.merge(df1, df2, on=['FOLDERYEAR'], how='inner'), econList).drop_duplicates()
+    
 
 def merge_business_econ_by_year(business, econ):
     return business.merge(econ, on='FOLDERYEAR', how='inner')
+
