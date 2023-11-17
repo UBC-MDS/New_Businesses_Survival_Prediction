@@ -1,9 +1,11 @@
 import pandas as pd
+pd.options.mode.chained_assignment = None  # default='warn'
+
 import numpy as np
 import datetime as dt
 from functools import reduce
 
-def business_datacleaning(self, business, survival_threshold):
+def business_datacleaning(business, survival_threshold):
     # Drop rows where ExpiredDate and IssuedDate are NA
     business = business.dropna(subset = ["ExpiredDate", "IssuedDate"])
 
@@ -27,7 +29,7 @@ def business_datacleaning(self, business, survival_threshold):
     # Adjust format of FOLDERYEAR
     business['FOLDERYEAR'] = business['FOLDERYEAR'].apply(lambda x : '20' + str(x))
     
-    # Create target colum and adjust Boolean to 0, 1
+    # Create target column and adjust Boolean to 0, 1
     business['survival_status'] = business['survival_days'] >= survival_threshold
     business["survival_status"] = business["survival_status"].astype(int)
     return business
@@ -49,5 +51,4 @@ def econ_datacleaning(raw_econ_index_data_dict):
     
 
 def merge_business_econ_by_year(business, econ):
-    return business.merge(econ, on='FOLDERYEAR', how='inner')
-
+    return business.merge(econ, on='FOLDERYEAR', how='left')
