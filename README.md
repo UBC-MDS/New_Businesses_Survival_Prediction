@@ -23,3 +23,6 @@ jupyter lab
 - ```nb_conda_kernels``` (version 2.3.1 or higher)
 - Python and packages listed in environment.yaml
 
+## License
+
+## References
