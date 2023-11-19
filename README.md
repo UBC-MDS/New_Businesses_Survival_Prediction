@@ -25,7 +25,26 @@ jupyter lab
 
 ## License
 The Business Survival Status Predictor materials here are licensed under the Creative Commons Attribution 2.5 Canada License (CC BY 2.5 CA). If re-using/re-mixing please provide attribution and link to this webpage.
+
 ## References
-City of Vancouver. 2023. 'Business Licences Dataset.' Vancouver Open Data. https://opendata.vancouver.ca/explore/dataset/business-licences/information/?disjunctive.status&disjunctive.businesssubtype&refine.folderyear=23
+
+## External Datasets:
+
+Employment by Industry:
+Description: This dataset from Statistics Canada provides detailed information on employment across various industries. It includes data on employment figures, categorized by different industry sectors as defined by the North American Industry Classification System (NAICS).
+URL: https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1410035501&pickMembers%5B0%5D=1.11&pickMembers%5B1%5D=3.1&pickMembers%5B2%5D=4.1&cubeTimeFrame.startMonth=01&cubeTimeFrame.startYear=1997&cubeTimeFrame.endMonth=10&cubeTimeFrame.endYear=2023&referencePeriods=19970101%2C20231001
+
+GDP by Industry:
+Description: This dataset presents the Gross Domestic Product (GDP) by industry in Canada. It offers insights into the economic performance of different industry sectors, providing a valuable measure of economic activity and health.
+URL: https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3610043401
+
+Investment in Building Construction:
+Description: This dataset includes data on investment in building construction. It covers various types of structures and work, offering a comprehensive view of the construction investment landscape in Canada.
+URL: https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3410017501
+
+Consumer Price Index:
+Description: The Consumer Price Index (CPI) dataset provides information on the changes in the price level of a basket of consumer goods and services purchased by households. It is a key indicator of inflation and purchasing power.
+URL: https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810025601
+
 
 Statistics Canada. 2023. https://www150.statcan.gc.ca/n1/en/type/data?MM=1
