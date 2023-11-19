@@ -27,7 +27,7 @@ raw_econ_index_data_dict = {
 def fetch_business_license():
     print('Now loading: business_license data')
     url = 'https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/business-licences/exports/csv?lang=en&timezone=America%2FLos_Angeles&use_labels=true&delimiter=%3B'
-    return pd.read_csv(url, delimiter = ';')
+    return pd.read_csv(url, delimiter = ';', low_memory=False)
 
 
 def extrat_from_zip(url):
