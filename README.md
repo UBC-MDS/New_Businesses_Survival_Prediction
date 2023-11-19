@@ -24,5 +24,14 @@ jupyter lab
 - Python and packages listed in environment.yaml
 
 ## License
-
+The Business Survival Status Predictor materials here are licensed under the Creative Commons Attribution 2.5 Canada License (CC BY 2.5 CA). If re-using/re-mixing please provide attribution and link to this webpage.
 ## References
+City of Vancouver. 2023. 'Business Licences Dataset.' Vancouver Open Data. https://opendata.vancouver.ca/explore/dataset/business-licences/information/?disjunctive.status&disjunctive.businesssubtype&refine.folderyear=23
+
+Statistics Canada. 2023. https://www150.statcan.gc.ca/n1/en/type/data?MM=1
+
+McKinney, Wes. 2010. “Data Structures for Statistical Computing in Python.” In Proceedings of the 9th Python in Science Conference, edited by Stéfan van der Walt and Jarrod Millman, 51–56.
+
+VanderPlas, J. et al., 2018. Altair: Interactive statistical visualizations for python. Journal of open source software, 3(32), p.1057.
+
+Pedregosa, F. et al., 2011. Scikit-learn: Machine learning in Python. Journal of machine learning research, 12(Oct), pp.2825–2830.
