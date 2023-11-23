@@ -1,0 +1,23 @@
+name: base
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - conda
+  - setuptools
+  - pip
+  - wheel
+  - conda-content-trust
+  - conda-libmamba-solver
+  - python.app
+  - jupyterlab
+  - pandas
+  - jupyterlab-spellchecker
+  - jupyterlab-git
+  - numpy
+  - matplotlib
+  - openpyxl
+  - nb_conda_kernels
+  - jupyterlab_widgets
+prefix: /Users/arturoboquin/miniconda3
