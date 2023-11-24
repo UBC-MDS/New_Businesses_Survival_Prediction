@@ -1,7 +1,7 @@
 # Predicting the Survival of New Businesses in Vancouver
 
 - author: Prabhjit Thind, Beth Ou Yang, Arturo Boquin, Weiran Zhao
-[View the rendered HTML report here](https://arturoboquin.github.io/New_Businesses_Survival_Prediction/milestone1_report.html)
+[View the rendered HTML report here](https://arturoboquin.github.io/New_Businesses_Survival_Prediction/./docs/milestone1_report.html)
 
 
 ## About
