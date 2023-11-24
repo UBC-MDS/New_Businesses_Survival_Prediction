@@ -1,4 +1,4 @@
-#Author: Prabhjit Thind, Beth Ou Yang, Arturo Boquin, Weiran Zhao
+#Author: Prabhjit Thind, Beth Ou Yang, Arturo Boquin, Weiran Zhao.
 FROM quay.io/jupyter/minimal-notebook:2023-11-19
 
 RUN conda install -y matplotlib=3.8.1 \
