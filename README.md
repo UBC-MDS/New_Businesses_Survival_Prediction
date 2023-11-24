@@ -5,7 +5,23 @@
 ## About
 This analysis aims to predict the survival of new businesses in Vancouver by examining various economic and demographic factors. Using datasets from the City business license registry and other external sources, we explore the influence of location, industry, and economic indicators on business survival.
 
-## Usage
+## Usage via Docker
+
+1. First clone the repository using the below command:
+```
+git clone https://github.com/UBC-MDS/New_Businesses_Survival_Prediction.git
+```
+2. Next, use the below command to run the docker container in your terminal:
+```
+docker-compose up
+```
+3. After running the container, you will get a URL in your terminal. Copy that URL and paste it in your browswer. Change the port mentioned in URL from 8888 to 8889. Jupyter Lab/Notebook will open.
+
+4. Now we need to open our main project report (.ipynb) file. Change directory by clicking on "DSCI_522_group1" and then next open "src" directory. Click on "milestone1_report.ipynb" to open the desired notebook.
+
+5. You can reproduces our analysis by doing "Run All" from the Run tab in jupyter.
+
+## Usage via Conda
 
 First time running the project, run the following from the root of this repository:
 ```
