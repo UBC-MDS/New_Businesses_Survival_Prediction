@@ -9,7 +9,7 @@ This analysis aims to predict the survival of new businesses in Vancouver by exa
 
 First time running the project, run the following from the root of this repository:
 ```
-conda env create --file environment.yaml
+conda env create --file environment.yml
 ```
 To run the analysis, run the following from the root of this repository:
 
