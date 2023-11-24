@@ -1,6 +1,6 @@
 import pandas as pd
 from pandas.core.dtypes.common import is_timedelta64_dtype
-from pandas.api.types import is_datetime64_any_dtype
+from pandas.api.types import is_integer_dtype
 
 import pytest
 import sys
@@ -15,22 +15,24 @@ from src.DataPreprocess import *
 business_df = fetch_business_license()
 econ_dict = fetch_econ_indicators()
 
-# Test for correct return type
-def test_business_datacleaning_data_type():
-    assert is_datetime64_any_dtype(business_df['IssuedDate']), "Column `IssuedDate` in business_df from `fetch_business_license` should be datetime"
-    assert is_datetime64_any_dtype(business_df['ExpiredDate']), "Column `IssuedDate` in business_df from `fetch_business_license` should be datetime"
+business_df = business_datacleaning(business = business_df, survival_threshold = 365 * 2)
+econ_df = econ_datacleaning(econ_dict)
+business_econ_df = merge_business_econ_by_year(business_df, econ_df)
 
+# business data frame - Test for correct target value
 def test_business_datacleaning_target_value():
-    assert set([1, 0]).issubset(business_df['survival_status'].unique()), "Column `IssuedDate` in business_df from `fetch_business_license` should contain only [1, 0]"
+    assert is_integer_dtype(business_df['survival_status']), "Column `survival_status` in business_df from `fetch_business_license` should be integer"
+    assert set([1, 0]) == set(business_df['survival_status'].unique()), "Column `IssuedDate` in business_df from `fetch_business_license` should contain only [1, 0]"
 
 
-def test_econ_datacleaning():
-    assert isinstance(econ_dict, dict), "`fetch_econ_indicators` should return a dictionary"
-    assert len(econ_dict) == 4, "`fetch_econ_indicators` should return a dictionary with 4 items"
-    for df in econ_dict.values():
-        assert isinstance(df, pd.DataFrame), "One of the item is not a pandas data frame"
+# econ data frame - Test for correct return type
+def test_econ_datacleaning_return_dataframe():
+    assert isinstance(econ_df, pd.DataFrame), "`fetch_business_license` should return a pandas data frame"
 
-# Test for the necessary columns are included in the loaded data frames
-def test_business_contains_necessary_columns():
-    busi_necessary_col = ['BusinessType', 'City', 'LocalArea', 'NumberofEmployees', 'FeePaid']
-    assert set(busi_necessary_col).issubset(set(business_df.columns)), f"`fetch_business_license` did not get necessary columns. Columns should contain: {busi_necessary_col}"
+# econ data frame - Test for the necessary columns are included in the loaded data frame
+def test_econ_contains_necessary_columns():
+    econ_necessary_col = ['GDPValue', 'ConsumerPriceValue', 'EmploymentValue', 'InvestmentConstructionValue']
+    assert set(econ_necessary_col).issubset(set(econ_df.columns)), f"`econ_datacleaning` did not get necessary columns. Columns should contain: {econ_necessary_col}"
+
+def test_merge_return_datafram():
+    assert isinstance(business_econ_df, pd.DataFrame), "`merge_business_econ_by_year` should return a pandas data frame"
