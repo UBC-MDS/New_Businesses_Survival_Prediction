@@ -9,7 +9,7 @@ RUN conda install -y matplotlib=3.8.1 \
     vegafusion-python-embed=1.4.3 \
     vegafusion=1.4.3 \
     vl-convert-python=1.1.0 \
-    python
+    python=3.11.6
 
 #RUN pip install python==3.12.0
 
