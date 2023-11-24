@@ -11,7 +11,7 @@ This analysis aims to predict the survival of new businesses in Vancouver by exa
 ```
 git clone https://github.com/UBC-MDS/New_Businesses_Survival_Prediction.git
 ```
-2. **Docker Compose:** Next, use the below command to run the docker container in your terminal:
+2. **Docker Compose:** Inside the cloned repository, use the below command to run the docker container in your terminal:
 ```
 docker-compose up
 ```
