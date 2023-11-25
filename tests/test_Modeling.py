@@ -188,4 +188,13 @@ def test_transform_return_dataframe():
     assert isinstance(X_transformed, np.ndarray), "`transform` should return an array"  
 
 
+# transform - Test for correct return column types    
+def test_transform_return_numeric_columns():
+    existed_cols_cnt = X_transformed.shape[1]
+    numeric_cols_cnt = pd.DataFrame(X_transformed).select_dtypes(include=np.number).shape[1]
+    assert existed_cols_cnt == numeric_cols_cnt, "`transform` should return all numeric columns. There are some non-numeric columns instead."    
+
+
+
+  
 
