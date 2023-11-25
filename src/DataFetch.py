@@ -8,7 +8,7 @@ from collections import defaultdict
 """
 Fetch data via URLs.
 
-Example
+Usage
 -------
 >>> from DataFetch import fetch_business_license, fetch_econ_indices
 >>> business = fetch_business_license()
@@ -31,6 +31,18 @@ def fetch_business_license():
 
 
 def extrat_from_zip(url):
+    """
+    Extracts and loads data from a CSV file contained within a zip archive from a given URL.
+
+    Parameters:
+    - url (str): The URL of the zip archive containing the CSV file.
+
+    Returns:
+    - pandas.DataFrame: The extracted CSV data loaded into a pandas DataFrame.
+
+    Usage:
+    >>> extracted_data = extrat_from_zip('https://example.com/data.zip')
+    """
     # extracting zipfile from URL
     zip_name = 'temp.zip'
     with urlopen(url) as response, open(zip_name, 'wb') as out_file:
@@ -50,6 +62,20 @@ def extrat_from_zip(url):
     return data
 
 def customized_filter(index_name, data):
+    """
+    Filters and extracts specific economic index data from a given DataFrame based on the provided index name.
+
+    Parameters:
+    - index_name (str): The economic indicators to filter. Must be one of ['GDP', 'ConsumerPrice', 'Employment', 'InvestmentConstruction'].
+    - data (pandas.DataFrame): The input DataFrame containing economic data.
+
+    Returns:
+    - pandas.DataFrame: A filtered DataFrame containing data specific to the provided economic indicator names.
+
+    Raises:
+    - AssertionError: If the provided index_name is not one of ['GDP', 'ConsumerPrice', 'Employment', 'InvestmentConstruction'].
+    """
+
     assert index_name in ['GDP', 'ConsumerPrice', 'Employment', 'InvestmentConstruction'],  "Economic index not in ['GDP', 'ConsumerPrice', 'Employment', 'InvestmentConstruction']"
 
     if index_name == 'GDP':
@@ -76,6 +102,15 @@ def customized_filter(index_name, data):
     return data[mask].dropna(subset=['REF_DATE', 'VALUE'])
 
 def fetch_econ_indicators():
+    """
+    Fetches and preprocesses economic indicators data from specified URLs.
+
+    Returns:
+    - dict: A dictionary containing economic indicators dataframes, where keys are indicator names.
+
+    Usage:
+    >>> econ_data = fetch_econ_indicators()
+    """
     econ_url_dict = {
         'GDP': 'https://www150.statcan.gc.ca/n1/en/tbl/csv/36100434-eng.zip?st=8pJW1bGZ',
         'ConsumerPrice': 'https://www150.statcan.gc.ca/n1/en/tbl/csv/18100256-eng.zip?st=-S3x83UK',

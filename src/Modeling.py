@@ -12,7 +12,19 @@ from sklearn.preprocessing import (
 )
 
 def transform(df, word_features, categorical_features, numeric_features):
+    """
+    Transform and preprocess a DataFrame with different types of features.
 
+    Parameters:
+    - df (pandas.DataFrame): The input DataFrame containing the features to be transformed.
+    - word_features (list of str): List of column names corresponding to text features in the DataFrame.
+    - categorical_features (list of str): List of column names corresponding to categorical features in the DataFrame.
+    - numeric_features (list of str): List of column names corresponding to numeric features in the DataFrame.
+
+    Returns:
+    - numpy.ndarray: The transformed array containing the preprocessed features.
+    """
+    
     # drop_features = ['Status', 'BusinessSubType', 'FOLDERYEAR', 'LicenceRSN', 'LicenceNumber', 'LicenceRevisionNumber',
     #     'BusinessName', 'BusinessTradeName', 'IssuedDate', 'ExpiredDate', 
     #     'Unit', 'UnitType', 'House', 'Street', 'ExtractDate', 'Geom', 'geo_point_2d']
@@ -41,6 +53,23 @@ def transform(df, word_features, categorical_features, numeric_features):
 
 
 def split_x_y(df, word_features, categorical_features, numeric_features):
+    """
+    Extracts features (X) and target variable (y) from a DataFrame.
+
+    Parameters:
+    - df (pandas.DataFrame): The input DataFrame containing both features and the target variable.
+    - word_features (list of str): List of column names corresponding to text features in the DataFrame.
+    - categorical_features (list of str): List of column names corresponding to categorical features in the DataFrame.
+    - numeric_features (list of str): List of column names corresponding to numeric features in the DataFrame.
+
+    Returns:
+    - X (pandas.DataFrame): The features extracted from the input DataFrame.
+    - y (pandas.Series): The target variable extracted from the "survival_status" column of the input DataFrame.
+
+    Usage:
+    >>> X, y = split_x_y(df, word_features, categorical_features, numeric_features)
+    """
+
     X = df[word_features + categorical_features + numeric_features]
     y = df["survival_status"]
     return X, y
