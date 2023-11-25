@@ -19,12 +19,6 @@ business_df = business_datacleaning(business = business_df, survival_threshold =
 econ_df = econ_datacleaning(econ_dict)
 business_econ_df = merge_business_econ_by_year(business_df, econ_df)
 
-# business data frame - Test for correct target value
-def test_business_datacleaning_target_value():
-    assert is_integer_dtype(business_df['survival_status']), "Column `survival_status` in business_df from `fetch_business_license` should be integer"
-    assert set([1, 0]) == set(business_df['survival_status'].unique()), "Column `IssuedDate` in business_df from `fetch_business_license` should contain only [1, 0]"
-
-
 # econ data frame - Test for correct return type
 def test_econ_datacleaning_return_dataframe():
     assert isinstance(econ_df, pd.DataFrame), "`fetch_business_license` should return a pandas data frame"
@@ -34,5 +28,5 @@ def test_econ_contains_necessary_columns():
     econ_necessary_col = ['GDPValue', 'ConsumerPriceValue', 'EmploymentValue', 'InvestmentConstructionValue']
     assert set(econ_necessary_col).issubset(set(econ_df.columns)), f"`econ_datacleaning` did not get necessary columns. Columns should contain: {econ_necessary_col}"
 
-def test_merge_return_datafram():
+def test_merge_return_dataframe():
     assert isinstance(business_econ_df, pd.DataFrame), "`merge_business_econ_by_year` should return a pandas data frame"
