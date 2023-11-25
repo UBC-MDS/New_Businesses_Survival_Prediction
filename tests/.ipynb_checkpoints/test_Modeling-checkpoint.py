@@ -179,16 +179,3 @@ def test_split_x_y_return_dataframe():
     assert isinstance(X_df, pd.DataFrame), "`split_x_y` return X is not a pandas dataframe. Should return a pandas dataframe"
     assert isinstance(y_df, pd.Series), "`split_x_y` return y is not a pandas dataframe. Should return a pandas dataframe"
 
-# split_x_y - Test for correct return columns
-def test_split_x_y_return_columns():
-    assert X_df.columns.tolist() == [c for cols in features.values() for c in cols], f"`split_x_y` return X should have columns: {[c for cols in features.values() for c in cols]}. Return {X_df.columns} instead."
-
-# transform - Test for correct return type
-def test_transform_return_dataframe():
-    assert isinstance(X_transformed, np.ndarray), "`transform` should return an array"
-
-# transform - Test for correct return column types
-def test_transform_return_numeric_columns():
-    existed_cols_cnt = X_transformed.shape[1]
-    numeric_cols_cnt = pd.DataFrame(X_transformed).select_dtypes(include=np.number).shape[1]
-    assert existed_cols_cnt == numeric_cols_cnt, "`transform` should return all numeric columns. There are some non-numeric columns instead."
