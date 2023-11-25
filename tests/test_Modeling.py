@@ -183,7 +183,7 @@ def test_split_x_y_return_dataframe():
 # split_x_y - Test for correct return columns
 def test_split_x_y_return_columns():
     assert X_df.columns.tolist() == [c for cols in features.values() for c in cols], f"`split_x_y` return X should have columns: {[c for cols in features.values() for c in cols]}. Return {X_df.columns} instead."
-    assert len(X_df.columns.tolist()) == 9, "Getting more than expected columns in training dataframe"
+    assert len(X_df.columns.tolist()) == 9, "Not getting expected no of columns in training dataframe"
 
 # transform - Test for correct return type
 def test_transform_return_dataframe():
