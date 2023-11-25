@@ -17,6 +17,16 @@ Example
 """
 
 def business_datacleaning(business, survival_threshold=730):
+    """
+    Performs data cleaning on a business DataFrame.
+
+    Parameters:
+    - business (pandas.DataFrame): The input DataFrame containing business-license data.
+    - survival_threshold (int, optional): The threshold for defining the survival status of a business in days. Defaults to 730 days.
+
+    Returns:
+    - pandas.DataFrame: The cleaned and processed DataFrame with added features.
+    """
     # Drop rows where ExpiredDate and IssuedDate are NA
     business = business.dropna(subset = ["ExpiredDate", "IssuedDate"])
 
@@ -47,6 +57,15 @@ def business_datacleaning(business, survival_threshold=730):
 
 
 def econ_datacleaning(raw_econ_index_data_dict):
+    """
+    Cleans and processes economic data from a dictionary of DataFrames.
+
+    Parameters:
+    - raw_econ_index_data_dict (dict): A dictionary containing raw economic data, where keys are indicator names and values are DataFrames.
+
+    Returns:
+    - pandas.DataFrame: The cleaned and processed DataFrame containing economic data.
+    """
     econList = []
     for index_name, data in raw_econ_index_data_dict.items():
         data = data[['REF_DATE', 'VALUE']]
@@ -62,4 +81,14 @@ def econ_datacleaning(raw_econ_index_data_dict):
     
 
 def merge_business_econ_by_year(business, econ):
+    """
+    Merges business-license data and economic data based on the 'FOLDERYEAR' column..
+
+    Parameters:
+     - business (pandas.DataFrame): The DataFrame containing business-license data.
+     - econ (pandas.DataFrame): The DataFrame containing economic data.
+
+    Returns:
+    - pandas.DataFrame: The merged DataFrame containing both business and economic data.
+    """
     return business.merge(econ, on='FOLDERYEAR', how='left')
