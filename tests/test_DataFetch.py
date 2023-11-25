@@ -22,6 +22,6 @@ def test_econ_returns_dict():
         assert isinstance(df, pd.DataFrame), "One of the item is not a pandas data frame"
 
 # Test for the necessary columns are included in the loaded data frames
-def test_():
+def test_business_contains_necessary_columns():
     busi_necessary_col = ['BusinessType', 'City', 'LocalArea', 'NumberofEmployees', 'FeePaid']
     assert set(busi_necessary_col).issubset(set(business_df.columns)), f"`fetch_business_license` did not get necessary columns. Columns should contain: {busi_necessary_col}"
