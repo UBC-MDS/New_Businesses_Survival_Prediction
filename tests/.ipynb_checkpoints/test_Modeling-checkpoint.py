@@ -181,6 +181,11 @@ def test_split_x_y_return_dataframe():
 
 # split_x_y - Test for correct return columns  
 def test_split_x_y_return_columns():
-    assert X_df.columns.tolist() == [c for cols in features.values() for c in cols], f"`split_x_y` return X should have columns: {[c for cols in features.values() for c in cols]}. Return {X_df.columns} instead."     
+    assert X_df.columns.tolist() == [c for cols in features.values() for c in cols], f"`split_x_y` return X should have columns: {[c for cols in features.values() for c in cols]}. Return {X_df.columns} instead."    
+
+# transform - Test for correct return type  
+def test_transform_return_dataframe():
+    assert isinstance(X_transformed, np.ndarray), "`transform` should return an array"  
+
 
 
