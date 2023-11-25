@@ -179,3 +179,8 @@ def test_split_x_y_return_dataframe():
     assert isinstance(X_df, pd.DataFrame), "`split_x_y` return X is not a pandas dataframe. Should return a pandas dataframe"
     assert isinstance(y_df, pd.Series), "`split_x_y` return y is not a pandas dataframe. Should return a pandas dataframe"
 
+# split_x_y - Test for correct return columns  
+def test_split_x_y_return_columns():
+    assert X_df.columns.tolist() == [c for cols in features.values() for c in cols], f"`split_x_y` return X should have columns: {[c for cols in features.values() for c in cols]}. Return {X_df.columns} instead."     
+
+
