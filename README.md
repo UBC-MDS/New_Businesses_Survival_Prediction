@@ -8,7 +8,20 @@
 ## About
 This analysis aims to predict the survival of new businesses in Vancouver by examining various economic and demographic factors. Using datasets from the City business license registry and other external sources, we explore the influence of location, industry, and economic indicators on business survival.
 
-## Usage via Docker
+## Report
+
+The final report can be found [here](https://ubc-mds.github.io/New_Businesses_Survival_Prediction/milestone1_report.html).
+
+
+## Dependencies
+
+- [Docker](https://www.docker.com/) is a container solution 
+used to manage the software dependencies for this project.
+The Docker image used for this project is based on the
+`quay.io/jupyter/minimal-notebook:notebook-7.0.6` image.
+Additioanal dependencies are specified int the [`Dockerfile`](Dockerfile).
+
+### Usage via Docker
 
 1. **Cloning:** First clone the repository using the below command:
 ```
@@ -24,23 +37,90 @@ docker-compose up
 
 5. **Run Notebook:** You can reproduces our analysis by doing "Run All" from the Run tab in jupyter.
 
-## Usage via Conda
 
-First time running the project, run the following from the root of this repository:
-```
-conda env create --file environment.yml
-```
-To run the analysis, run the following from the root of this repository:
+#### Running the analysis
 
-```
-conda activate 522_group1
-jupyter lab
+1. Navigate to the root of this project on your computer using the
+   command line and enter the following command:
+
+``` 
+docker compose up
 ```
 
-## Dependencies
-- ```conda``` (version 23.9.0 or higher)
-- ```nb_conda_kernels``` (version 2.3.1 or higher)
-- Python and packages listed in environment.yaml
+2. In the terminal, look for a URL that starts with 
+`http://127.0.0.1:8888/lab?token=` 
+(for an example, see the highlighted text in the terminal below). 
+Copy and paste that URL into your browser.
+
+<img src="img/jupyter-container-web-app-launch-url.png" width=400>
+
+3. To run the analysis,
+enter the following commands in the terminal in the project root:
+
+```
+# download and extract data
+python scripts/download_data.py \
+   --url="https://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
+   --write-to="data/"
+
+# split data into train and test sets, preprocess data for eda 
+# and save preprocessor
+python scripts/xxxxxxxxxxx.py \
+   --raw-data=data/raw/xxxxxxx.data \
+   --data-to=data/xxxxxxxxx \
+   --preprocessor-to=results/xxxxxxxx \
+   --seed=522
+
+# perform eda and save plots
+python scripts/EDA.py \
+   --processed-training-data=data/processed/xxxxxxxxxxx.csv \
+   --plot-to=results/figures
+
+# train model, create visualize tuning, and save plot and model
+python scripts/fit_breast_cancer_classifier.py \
+   --training-data=data/processed/cancer_train.csv \
+   --preprocessor=results/models/cancer_preprocessor.pickle \
+   --columns-to-drop=data/processed/columns_to_drop.csv \
+   --pipeline-to=results/models \
+   --plot-to=results/figures \
+   --seed=xxx
+
+# evaluate model on test data and save results
+python scripts/xxxxxx.py \
+   --scaled-test-data=data/processed/xxxxxxx.csv \
+   --pipeline-from=results/models/xxxxxxxxxxxxx.pickle \
+   --results-to=results/xxxxxxx \
+   --seed=xxx
+```
+
+
+#### Clean up
+
+1. To shut down the container and clean up the resources, 
+type `Cntrl` + `C` in the terminal
+where you launched the container, and then type `docker compose rm`
+
+## Developer notes
+
+#### Adding a new dependency
+
+1. Add the dependency to the `Dockerfile` file on a new branch.
+
+2. Re-build the Docker image locally to ensure it builds and runs properly.
+
+3. Push the changes to GitHub. A new Docker
+   image will be built and pushed to Docker Hub automatically.
+   It will be tagged with the SHA for the commit that changed the file.
+
+4. Update the `docker-compose.yml` file on your branch to use the new
+   container image (make sure to update the tag specifically).
+
+5. Send a pull request to merge the changes into the `main` branch. 
+
+#### Running the tests
+Tests are run using the `pytest` command in the root of the project.
+More details about the test suite can be found in the 
+[`tests`](tests) directory.
 
 ## License
 The Business Survival Status Predictor materials here are licensed under the Creative Commons Attribution 2.5 Canada License (CC BY 2.5 CA). If re-using/re-mixing please provide attribution and link to this webpage.
