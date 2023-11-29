@@ -158,10 +158,10 @@ def main(raw_business_path, raw_econ_path):
     business = fetch_business_license()
     raw_econ_index_data_dict = fetch_econ_indicators()
     econ = econ_datacleaning(raw_econ_index_data_dict)
-
+    
     if not os.path.exists('data/raw'):
         os.makedirs('data/raw')
-        
+      
     business.to_csv(raw_business_path, index=False)
     econ.to_csv(raw_econ_path, index=False)
 
