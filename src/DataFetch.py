@@ -141,7 +141,7 @@ def econ_datacleaning(raw_econ_index_data_dict):
     econList = []
     for index_name, data in raw_econ_index_data_dict.items():
         data = data[['REF_DATE', 'VALUE']]
-        data['REF_YEAR'] = data['REF_DATE'].apply(lambda x : int(str(x)[:4]))
+        data.loc[:, 'REF_YEAR'] = data['REF_DATE'].apply(lambda x : int(str(x)[:4]))
         data = data[data['REF_YEAR'] >= 2012]
         data['REF_YEAR'] = data['REF_YEAR'].astype(str)
         data = data.drop(columns=['REF_DATE'])
