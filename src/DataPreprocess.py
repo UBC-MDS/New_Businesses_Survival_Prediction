@@ -1,6 +1,6 @@
 import pandas as pd
 pd.options.mode.chained_assignment = None  # default='warn'
-
+import os
 import numpy as np
 import datetime as dt
 import click
@@ -76,6 +76,9 @@ def merge_business_econ_by_year(business, econ):
 @click.option('--raw_econ_path') # business_path = 'data/raw/econ.csv'
 @click.option('--merged_data_output_path') # merged_data_output_path = 'data/processed/business_econ.csv'
 def main(raw_business_path, processed_business_path, raw_econ_path, merged_data_output_path):
+    if not os.path.exists('data/processed'):
+        os.makedirs('data/processed')
+
     business = pd.read_csv(raw_business_path, low_memory=False)
     business = business_datacleaning(business = business, survival_threshold = 365 * 2)
     business.to_csv(processed_business_path, index=False)
