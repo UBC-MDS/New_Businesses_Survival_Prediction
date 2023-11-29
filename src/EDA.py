@@ -1,6 +1,9 @@
+from DataPreprocess import *
+from DataFetch import *
+import pandas as pd
 import altair as alt
 alt.data_transformers.enable("vegafusion")
-import matplotlib.pyplot as plt
+import click
 
 def numeric_feature_visualization(data, features):
     """
@@ -30,7 +33,7 @@ def numeric_feature_visualization(data, features):
         alt.hconcat(*charts_numeric[i:i+2]) for i in range(0, len(charts_numeric), 2)
     ])
     
-    return chart_grid
+    chart_grid.save('results/figures/numeric_features.png')
 
 def large_variance_numeric_feature_visualization(data, feature):
     """
@@ -55,8 +58,9 @@ def large_variance_numeric_feature_visualization(data, feature):
         width=120,
         height=120
     )
-    
-    return chart
+    png_name = f'results/figures/large_variance_numeric_{feature}.png'
+    chart.save(png_name)
+    # return chart
 
 def categorical_feature_visualization(data, feature):
     """
@@ -76,8 +80,9 @@ def categorical_feature_visualization(data, feature):
     ).facet(
         'survival_status:O', columns = 2
     )
-    
-    return chart
+
+    png_name = f'results/figures/categorical_{feature}.png'
+    chart.save(png_name)
 
 def varianced_categorical_feature_visualization(data, feature):
     """
@@ -100,5 +105,39 @@ def varianced_categorical_feature_visualization(data, feature):
     ).facet(
         'survival_status:O', columns = 2
     )
+
+    png_name = f'results/figures/varianced_categorical_{feature}.png'
+    chart.save(png_name)
+
+
+
+@click.command()
+@click.option('--merged_data_path') # merged_data_path = 'data/processed/business_econ.csv'
+
+def main(merged_data_path):
+    # Load final merged data
+    data = pd.read_csv(merged_data_path, low_memory=False)
+
+    # Numeric
+    numeric_features = ['GDPValue', 'ConsumerPriceValue', 'EmploymentValue', 'InvestmentConstructionValue'] 
+    numeric_feature_visualization(data, numeric_features)
+
+    large_var_numeric_features = ['FeePaid'] # 'NumberofEmployees'
+    for large_var_feat in large_var_numeric_features:
+        large_variance_numeric_feature_visualization(data, large_var_feat)
     
-    return chart
+    # Categorical
+    categorical_features = ['LocalArea']
+    varianced_categorical_feature = ['BusinessType']
+
+    for categorical_feat in categorical_features:
+        categorical_feature_visualization(data, categorical_feat)
+
+    for varianced_categorical_feat in varianced_categorical_feature:
+        varianced_categorical_feature_visualization(data, varianced_categorical_feat)
+
+
+if __name__ == "__main__":
+    main()
+
+# python  src/EDA.py --merged_data_path=data/processed/business_econ.csv
