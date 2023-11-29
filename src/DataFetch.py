@@ -141,7 +141,7 @@ def econ_datacleaning(raw_econ_index_data_dict):
     econList = []
     for index_name, data in raw_econ_index_data_dict.items():
         data = data[['REF_DATE', 'VALUE']]
-        data['REF_YEAR'] = data['REF_DATE'].apply(lambda x : int(str(x)[:4]))
+        data.loc[:, 'REF_YEAR'] = data['REF_DATE'].apply(lambda x : int(str(x)[:4]))
         data = data[data['REF_YEAR'] >= 2012]
         data['REF_YEAR'] = data['REF_YEAR'].astype(str)
         data = data.drop(columns=['REF_DATE'])
@@ -158,7 +158,10 @@ def main(raw_business_path, raw_econ_path):
     business = fetch_business_license()
     raw_econ_index_data_dict = fetch_econ_indicators()
     econ = econ_datacleaning(raw_econ_index_data_dict)
-
+    
+    if not os.path.exists('data/raw'):
+        os.makedirs('data/raw')
+      
     business.to_csv(raw_business_path, index=False)
     econ.to_csv(raw_econ_path, index=False)
 
