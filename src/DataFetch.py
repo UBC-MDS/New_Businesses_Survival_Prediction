@@ -2,7 +2,12 @@ import zipfile
 from urllib.request import urlopen
 import shutil
 import os
+
+import warnings
 import pandas as pd
+from pandas.core.common import SettingWithCopyWarning
+warnings.simplefilter(action="ignore", category=SettingWithCopyWarning)
+
 from collections import defaultdict
 from functools import reduce
 import click
@@ -155,11 +160,11 @@ def econ_datacleaning(raw_econ_index_data_dict):
 @click.option('--raw_business_path') # raw_business_path=data/raw/business.csv
 @click.option('--raw_econ_path') # raw_econ_path=data/raw/econ.csv
 def main(raw_business_path, raw_econ_path):
-    business = fetch_business_license()
+    # business = fetch_business_license()
     raw_econ_index_data_dict = fetch_econ_indicators()
     econ = econ_datacleaning(raw_econ_index_data_dict)
 
-    business.to_csv(raw_business_path, index=False)
+    # business.to_csv(raw_business_path, index=False)
     econ.to_csv(raw_econ_path, index=False)
 
 if __name__ == "__main__":
