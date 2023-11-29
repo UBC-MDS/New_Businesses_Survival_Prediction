@@ -58,39 +58,18 @@ Copy and paste that URL into your browser.
 enter the following commands in the terminal in the project root:
 
 ```
-# download and extract data
-python scripts/download_data.py \
-   --url="https://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
-   --write-to="data/"
+# Data Fetch (to save raw data into csv files)
+python src/DataFetch.py --raw_business_path=data/raw/business.csv \
+      --raw_econ_path=data/raw/econ.csv
 
-# split data into train and test sets, preprocess data for eda 
-# and save preprocessor
-python scripts/xxxxxxxxxxx.py \
-   --raw-data=data/raw/xxxxxxx.data \
-   --data-to=data/xxxxxxxxx \
-   --preprocessor-to=results/xxxxxxxx \
-   --seed=522
+# Data Preprocess (to save clean data into csv files)
+python src/DataPreprocess.py --raw_business_path=data/raw/business.csv \
+   --processed_business_path=data/processed/business.csv \
+   --raw_econ_path=data/raw/econ.csv \
+   --merged_data_output_path=data/processed/business_econ.csv
 
-# perform eda and save plots
-python scripts/EDA.py \
-   --processed-training-data=data/processed/xxxxxxxxxxx.csv \
-   --plot-to=results/figures
-
-# train model, create visualize tuning, and save plot and model
-python scripts/fit_breast_cancer_classifier.py \
-   --training-data=data/processed/cancer_train.csv \
-   --preprocessor=results/models/cancer_preprocessor.pickle \
-   --columns-to-drop=data/processed/columns_to_drop.csv \
-   --pipeline-to=results/models \
-   --plot-to=results/figures \
-   --seed=xxx
-
-# evaluate model on test data and save results
-python scripts/xxxxxx.py \
-   --scaled-test-data=data/processed/xxxxxxx.csv \
-   --pipeline-from=results/models/xxxxxxxxxxxxx.pickle \
-   --results-to=results/xxxxxxx \
-   --seed=xxx
+# EDA (to save png files)
+python  src/EDA.py --merged_data_path=data/processed/business_econ.csv
 ```
 
 

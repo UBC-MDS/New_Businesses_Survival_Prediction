@@ -3,7 +3,8 @@ pd.options.mode.chained_assignment = None  # default='warn'
 
 import numpy as np
 import datetime as dt
-from functools import reduce
+import click
+
 """
 Preprocess business_license as dataframe,
 and turn a dictionary storing the economic dataframes into one merged and clean dataframe.
@@ -55,31 +56,6 @@ def business_datacleaning(business, survival_threshold=730):
     business["survival_status"] = business["survival_status"].astype(int)
     return business
 
-
-def econ_datacleaning(raw_econ_index_data_dict):
-    """
-    Cleans and processes economic data from a dictionary of DataFrames.
-
-    Parameters:
-    - raw_econ_index_data_dict (dict): A dictionary containing raw economic data, where keys are indicator names and values are DataFrames.
-
-    Returns:
-    - pandas.DataFrame: The cleaned and processed DataFrame containing economic data.
-    """
-    econList = []
-    for index_name, data in raw_econ_index_data_dict.items():
-        data = data[['REF_DATE', 'VALUE']]
-        data['REF_YEAR'] = data['REF_DATE'].apply(lambda x : int(str(x)[:4]))
-        data = data[data['REF_YEAR'] >= 2012]
-        data['REF_YEAR'] = data['REF_YEAR'].astype(str)
-        data = data.drop(columns=['REF_DATE'])
-        econList.append(data.rename(columns = {'VALUE': f'{index_name}Value', 
-                                                'REF_YEAR': 'FOLDERYEAR'}
-                                    ).groupby('FOLDERYEAR').mean().reset_index())
-        
-    return reduce(lambda df1, df2 : pd.merge(df1, df2, on=['FOLDERYEAR'], how='inner'), econList).drop_duplicates()
-    
-
 def merge_business_econ_by_year(business, econ):
     """
     Merges business-license data and economic data based on the 'FOLDERYEAR' column..
@@ -92,3 +68,26 @@ def merge_business_econ_by_year(business, econ):
     - pandas.DataFrame: The merged DataFrame containing both business and economic data.
     """
     return business.merge(econ, on='FOLDERYEAR', how='left')
+
+
+@click.command()
+@click.option('--raw_business_path') # raw_business_path = 'data/raw/business.csv'
+@click.option('--processed_business_path') # processed_business_path = 'data/processed/business.csv'
+@click.option('--raw_econ_path') # business_path = 'data/raw/econ.csv'
+@click.option('--merged_data_output_path') # merged_data_output_path = 'data/processed/business_econ.csv'
+def main(raw_business_path, processed_business_path, raw_econ_path, merged_data_output_path):
+    business = pd.read_csv(raw_business_path, low_memory=False)
+    business = business_datacleaning(business = business, survival_threshold = 365 * 2)
+    business.to_csv(processed_business_path, index=False)
+    
+    econ = pd.read_csv(raw_econ_path, low_memory=False)
+    business['FOLDERYEAR'] = business['FOLDERYEAR'].astype(str)
+    econ['FOLDERYEAR'] = econ['FOLDERYEAR'].astype(str)
+
+    business_econ = merge_business_econ_by_year(business, econ)
+    business_econ.to_csv(merged_data_output_path, index=False)
+
+if __name__ == "__main__":
+    main()
+
+# python src/DataPreprocess.py --raw_business_path=data/raw/business.csv --processed_business_path=data/processed/business.csv --raw_econ_path=data/raw/econ.csv --merged_data_output_path=data/processed/business_econ.csv
