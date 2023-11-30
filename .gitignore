@@ -1,4 +1,6 @@
-data/*/.csv
+data/*/*.csv
 */__pycache__/*
 .DS_Store
-data/business-licences.csv
+*.zip
+*.csv
+debug.ipynb
