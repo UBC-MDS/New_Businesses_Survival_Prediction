@@ -172,7 +172,7 @@ features = {
 }
 
 X_df, y_df = split_x_y(df, **features)
-X_transformed = transform(X_df, **features)
+X_transformed = transform(X_df, X_df, y_df, "data/processed/", **features)
 
 
 # split_x_y - Test for correct return type
