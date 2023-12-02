@@ -2,7 +2,7 @@
 
 - author: Prabhjit Thind, Beth Ou Yang, Arturo Boquin, Weiran Zhao
 
-[View the rendered HTML report here](https://ubc-mds.github.io/New_Businesses_Survival_Prediction/milestone1_report.html)
+[View the rendered HTML report here](https://ubc-mds.github.io/New_Businesses_Survival_Prediction/report_business_survival_prediction.html)
 
 
 ## About
