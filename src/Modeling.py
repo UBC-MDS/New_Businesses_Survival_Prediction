@@ -63,7 +63,7 @@ def transform(df, X_test, y_test, test_data_to, word_features, categorical_featu
 
     X_test_transformed = np.hstack((word_trans_arr_test.toarray(), categorical_trans_arr_test, numeric_trans_arr_test))
     X_test_transformed = pd.DataFrame(X_test_transformed)
-    print(len(X_test_transformed))
+    #print(len(X_test_transformed))
     X_test_transformed.to_csv(os.path.join(test_data_to, "scaled_test.csv"), index=False)
     
     return np.hstack((word_trans_arr.toarray(), categorical_trans_arr, numeric_trans_arr))

@@ -48,7 +48,7 @@ def main(test_data, pipeline_from, results_to):
     # Calculate confusion matrix
     conf_matrix = confusion_matrix(y_test, predictions)
     conf_matrix_df = pd.DataFrame(conf_matrix, index=['Actual 0', 'Actual 1'], columns=['Predicted 0', 'Predicted 1'])
-    conf_matrix_df.to_csv(results_to + "/confusion_matrix.csv", index=False)
+    conf_matrix_df.to_csv(results_to + "/confusion_matrix.csv")
     
     
     # Calculate precision
