@@ -79,6 +79,11 @@ python src/evaluation.py --test-data data/processed --pipeline-from results/mode
 
 ```
 
+### Some clarification
+1. As the data/raw/business-license.csv is too large to upload to Github, please run the script to download all the necessary data files, rather than only look at the data folder.
+2. Make sure the connection is great when loading the data by the script. If there raises any error message like: No such file 'temp.zip', please try to re-run the script again because this may be caused by connection problems during the download process.
+The script should be run in the repo's folder (working directory should be New_Businesses_Survival_Prediction ).
+
 #### Clean up
 
 1. To shut down the container and clean up the resources, 
