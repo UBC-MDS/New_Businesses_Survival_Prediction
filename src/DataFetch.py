@@ -82,7 +82,7 @@ def customized_filter(index_name, data):
 
     if index_name == 'GDP':
         mask = (data['North American Industry Classification System (NAICS)'] == 'All industries [T001]') & \
-                (data['Prices'] == '2012 constant prices') & \
+                (data['Prices'].str.contains('constant prices')) & \
                 (data['Seasonal adjustment'] == 'Seasonally adjusted at annual rates')
 
     elif index_name == 'ConsumerPrice':
