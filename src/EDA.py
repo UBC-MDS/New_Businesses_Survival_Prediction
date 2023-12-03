@@ -16,9 +16,7 @@ def numeric_feature_visualization(data, features):
     Returns:
     - An Altair LayerChart displaying density plots for numeric features grouped by survival status.
     """
-    charts_numeric = []
-    for feature in features:
-        chart = alt.Chart(data).transform_density(
+    charts_numeric = [alt.Chart(data).transform_density(
             feature,
             as_=[feature, 'density'],
             groupby=['survival_status']
@@ -28,15 +26,12 @@ def numeric_feature_visualization(data, features):
             color=alt.Color('survival_status:O', legend=alt.Legend(title="Survival Status")).scale(scheme='dark2')
         ).properties(
             width=180,
-            height=120,
+            height=180,
             title=f'Density Plot of {feature} by Survival Status'
-        )
-        charts_numeric.append(chart)
+        ) for feature in features]
     
-    chart_grid = alt.vconcat(*[
-        alt.hconcat(*charts_numeric[i:i+2]) for i in range(0, len(charts_numeric), 2)
-    ])
-        
+    chart_grid = alt.concat(*charts_numeric, columns=2)
+
     chart_grid.save('results/figures/numeric_features.png')
 
 def fee_paid_visualization(data, feature='FeePaid'):
@@ -49,17 +44,17 @@ def fee_paid_visualization(data, feature='FeePaid'):
     Returns:
     - An Altair Chart displaying a density plot for the 'FeePaid' feature with a restricted x-axis domain.
     """
-    chart = alt.Chart(data).transform_density(
+    chart = alt.Chart(data[data['FeePaid'] <= 1000]).transform_density(
         feature,
         as_=[feature, 'density'],
         groupby=['survival_status']
     ).mark_area(opacity=0.5).encode(
-        x=alt.X(feature, title=f'{feature} Distribution', scale=alt.Scale(domain=[0, 5000])).stack(False),
+        x=alt.X(feature, title=f'{feature} Distribution').stack(False),
         y=alt.Y('density:Q', title='Density'),
         color=alt.Color('survival_status:O', legend=alt.Legend(title="Survival Status")).scale(scheme='dark2')
     ).properties(
-        width=120,
-        height=120,
+        width=200,
+        height=200,
         title=f'Density Plot of {feature} by Survival Status'
     )
     
@@ -86,12 +81,12 @@ def num_of_employee_visualization(data, feature='NumberofEmployees'):
         y=alt.Y('density:Q', title='Density'),
         color=alt.Color('survival_status:O', legend=alt.Legend(title="Survival Status")).scale(scheme='dark2')
     ).properties(
-        width=120,
-        height=120,
+        width=200,
+        height=200,
         title=f'Density Plot of {feature} by Survival Status'
     )
     
-    png_name = f'results/figures/{feature}.png'
+    png_name = f'results/figures/numeric_{feature}.png'
     chart.save(png_name)
 
 def categorical_feature_visualization(data, feature):
