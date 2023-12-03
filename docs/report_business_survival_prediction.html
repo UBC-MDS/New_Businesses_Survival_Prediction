@@ -315,7 +315,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results-discussion">Results &amp; Discussion</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-and-improvements">Conclusion and Improvements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#improvements">Improvements</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
@@ -346,6 +346,7 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_scores_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../results/tables/test_scores.csv&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">glue</span><span class="p">(</span><span class="s2">&quot;accuracy&quot;</span><span class="p">,</span> <span class="n">test_scores_df</span><span class="p">[</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">,</span> <span class="n">test_scores_df</span><span class="p">[</span><span class="s1">&#39;F1_Score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">test_scores_df</span> <span class="o">=</span> <span class="n">test_scores_df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">format</span><span class="p">()</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span>
 <span class="n">glue</span><span class="p">(</span><span class="s2">&quot;test_scores_df&quot;</span><span class="p">,</span> <span class="n">test_scores_df</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
@@ -429,13 +430,36 @@ survival predictions.</p>
 Logistic Regression is effective when the outcome is binary, making it appropriate for predicting whether a business survives or not.
 Easier interpretability of the model results is another reason why we chose Logistic Regression. It’s a linear model that provides coefficients for each predictor variable, making it easy to interpret the impact of each variable on the predicted outcome. This can be crucial for understanding the economic and demographic factors influencing business survival.</p>
 <p>We are using 70% of our data as training data and the remaining 30% is used as test data.</p>
-<p>Logistic Regression is performing with a cross-validation accuracy of <span class="output text_plain">0.77</span> on whether a business will survive or not.</p>
-<section id="conclusion-and-improvements">
-<h3>Conclusion and Improvements<a class="headerlink" href="#conclusion-and-improvements" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>The Logistic Regression model gives a decent accuracy of <span class="output text_plain">0.77</span> here and can be used as an assistive model for making decisions on whether business licence will be renewed or not.</p></li>
-</ul>
-<p>Overall Conclusion</p>
+<p>Logistic Regression is performing with a test validation accuracy of <span class="output text_plain">0.77</span> on whether a business will survive or not.</p>
+<figure class="align-default" id="test-scores-df" style="width: 400px">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_c9a88">
+  <thead>
+    <tr>
+      <th id="T_c9a88_level0_col0" class="col_heading level0 col0" >Accuracy</th>
+      <th id="T_c9a88_level0_col1" class="col_heading level0 col1" >F1_Score</th>
+      <th id="T_c9a88_level0_col2" class="col_heading level0 col2" >Precision</th>
+      <th id="T_c9a88_level0_col3" class="col_heading level0 col3" >Recall</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_c9a88_row0_col0" class="data row0 col0" >0.770000</td>
+      <td id="T_c9a88_row0_col1" class="data row0 col1" >0.860000</td>
+      <td id="T_c9a88_row0_col2" class="data row0 col2" >0.790000</td>
+      <td id="T_c9a88_row0_col3" class="data row0 col3" >0.950000</td>
+    </tr>
+  </tbody>
+</table>
+</div><figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Accuracy and F1-score from best model predicted on the test data.</span><a class="headerlink" href="#test-scores-df" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Our prediction model performed quite well on test data, with a final overall accuracy of <span class="pasted-text">0.77</span> and F1-score of <span class="pasted-text">0.86</span>.</p>
+<p>Other indicators that our model performed well come from the confusion matrix, where it only made <span class="pasted-text">862</span> mistakes. However all <span class="pasted-text">862</span> mistakes were predicting certain businesses would thrive when they were actually at risk, given the implications this has for the economy, this model can be used as a reference for policymakers and authorities (<code class="xref std std-numref docutils literal notranslate"><span class="pre">Figure</span> <span class="pre">{number}</span></code>).</p>
+<section id="improvements">
+<h3>Improvements<a class="headerlink" href="#improvements" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>The analysis conducted in this project provides significant insights into the factors influencing new business survival in Vancouver. The careful selection of predictive variables and the use of appropriate models have yielded results that not only predict business survival but also highlight critical economic and demographic factors influencing it.</p></li>
 <li><p>While the models show good predictive power, further research incorporating additional data sources, advanced modeling techniques, and a deeper temporal analysis could provide even more nuanced insights.</p></li>
@@ -506,7 +530,7 @@ Easier interpretability of the model results is another reason why we chose Logi
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results-discussion">Results &amp; Discussion</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-and-improvements">Conclusion and Improvements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#improvements">Improvements</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
