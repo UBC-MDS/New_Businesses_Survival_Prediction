@@ -307,7 +307,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Predicting the Survival of New Businesses in Vancouver</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a><ul class="nav section-nav flex-column">
@@ -315,24 +314,12 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">Analysis</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results-discussion">Results &amp; Discussion</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-visualization">EDA &amp; Visualization</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#employee-feepaid">employee &amp; feepaid</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#categorical-features">Categorical Features</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Analysis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-logistic-regression-and-bernoullinb">Why Logistic Regression and BernoulliNB?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-split">Train Test Split</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results-discussion">Results &amp; Discussion</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-and-improvements">Conclusion and Improvements</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -389,8 +376,8 @@ document.write(`
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
 <p>This study focuses on forecasting the viability of new businesses in Vancouver by analyzing a range of economic and demographic variables. We utilize data from the City business license registry (City of Vancouver, 2023) and supplementary sources such as Statistics Canada (2023) to assess the impact of factors like location, industry type, and economic conditions on the longevity of businesses.</p>
-<p>Our approach involves developing a classification model using logistic regression. This model leverages the aforementioned datasets to ascertain the likelihood of a new business sustaining operations over a two-year period. The effectiveness of our final model was substantiated through its performance on a separate test dataset, achieving an accuracy of {glue:text}’accuracy’. Out of {glue:text}’total’ test data cases, it accurately forecasted the survival of {glue:text}’pred_correct’ businesses.</p>
-<p>Nevertheless, the model incorrectly classified {glue:text}’false_neg’ cases as false negatives, erroneously indicating that certain businesses would thrive when they were actually at risk. These inaccuracies could potentially lead to detrimental outcomes, especially in scenarios involving targeted interventions for businesses. Therefore, we advocate for further research and refinement of this predictive model before its implementation as a tool for policy makers and economic authorities.</p>
+<p>Our approach involves developing a classification model using logistic regression. This model leverages the aforementioned datasets to ascertain the likelihood of a new business sustaining operations over a two-year period. The effectiveness of our final model was substantiated through its performance on a separate test dataset, achieving an accuracy of <span class="output text_plain">0.77</span>. Out of <span class="pasted-text">23817</span> test data cases, it accurately forecasted the survival of <span class="pasted-text">18442</span> businesses.</p>
+<p>Nevertheless, the model incorrectly classified <span class="pasted-text">862</span> cases as false negatives, erroneously indicating that certain businesses would thrive when they were actually at risk. These inaccuracies could potentially lead to detrimental outcomes, especially in scenarios involving targeted interventions for businesses. Therefore, we advocate for further research and refinement of this predictive model before its implementation as a tool for policy makers and economic authorities.</p>
 </section>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
@@ -411,63 +398,48 @@ survival predictions.</p>
 <section id="results-discussion">
 <h2>Results &amp; Discussion<a class="headerlink" href="#results-discussion" title="Permalink to this heading">#</a></h2>
 <p>Initial analysis of the datasets revealed significant trends and correlations between various factors and business survival. The logistic regression model showed promising results, though the presence of false negatives warrants further investigation and model refinement. Our findings suggest that, with improved accuracy, such a model could be a valuable tool for predicting business viability, aiding decision-making for both entrepreneurs and policymakers.</p>
-</section>
-<section id="eda-visualization">
-<h2>EDA &amp; Visualization<a class="headerlink" href="#eda-visualization" title="Permalink to this heading">#</a></h2>
-<p>Overall Target: To look at which of the features might be useful to predict the survival status, we plotted the distributions of each predictor from the dataset and coloured the distribution by class (failed to survive more than 2 yrs: green, and survived for more than 2 yrs: orange). In doing this, what we aim at is to omit features of which both the binary classes have similar patterns. In that way, it means that these features do have the power to tell the two classes apart and fit their values into each of them.</p>
+<p>To look at which of the features might be useful to predict the survival status, we plotted the distributions of each predictor from the dataset and coloured the distribution by class (failed to survive more than 2 yrs: green, and survived for more than 2 yrs: orange). In doing this, what we aim at is to omit features of which both the binary classes have similar patterns. In that way, it means that these features do have the power to tell the two classes apart and fit their values into each of them.</p>
 <figure class="align-default" id="numeric-features">
 <a class="reference internal image-reference" href="_images/numeric_features.png"><img alt="_images/numeric_features.png" src="_images/numeric_features.png" style="width: 800px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 1 </span><span class="caption-text">Comparison of the numeric features distributions.</span><a class="headerlink" href="#numeric-features" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="employee-feepaid">
-<h1>employee &amp; feepaid<a class="headerlink" href="#employee-feepaid" title="Permalink to this heading">#</a></h1>
-<p>feepaid</p>
-<section id="categorical-features">
-<h2>Categorical Features<a class="headerlink" href="#categorical-features" title="Permalink to this heading">#</a></h2>
+<figure class="align-default" id="large-variance-numeric-feepaid">
+<a class="reference internal image-reference" href="_images/large_variance_numeric_FeePaid.png"><img alt="_images/large_variance_numeric_FeePaid.png" src="_images/large_variance_numeric_FeePaid.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Numeric feature with large variance - FeePaid-.</span><a class="headerlink" href="#large-variance-numeric-feepaid" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>For categorical features we generated histograms to see frequency of observations of both classes.</p>
 <p>The two histograms indicate an underlying pattern where the two features could have an influence on the target, with the similar spread of frequencies.</p>
-<p>local &amp; businesstype</p>
-</section>
-<section id="id1">
-<h2>Analysis<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
-<p>We have used Logistic Regression and BernoulliNB for predicting business survival in Vancouver due to the nature of the data.</p>
-<section id="why-logistic-regression-and-bernoullinb">
-<h3>Why Logistic Regression and BernoulliNB?<a class="headerlink" href="#why-logistic-regression-and-bernoullinb" title="Permalink to this heading">#</a></h3>
-<p>Logistic Regression is effective when the outcome is binary, making it appropriate for predicting whether a business survives or not. Easier interpretability of the model results is another reason why we chose Logistic Regression. It’s a linear model that provides coefficients for each predictor variable, making it easy to interpret the impact of each variable on the predicted outcome. This can be crucial for understanding the economic and demographic factors influencing business survival.</p>
-<p>BernoulliNB, a variant of Naive Bayes, accommodates binary outcomes, aligning with the nature of the task where businesses either survive or fail. It excels in handling categorical features and is effective in scenarios with sparse data, making it well-suited for the diverse and potentially sparse economic and demographic factors influencing business longevity in the city.</p>
-</section>
-<section id="train-test-split">
-<h3>Train Test Split<a class="headerlink" href="#train-test-split" title="Permalink to this heading">#</a></h3>
+<figure class="align-default" id="categorical-localarea">
+<a class="reference internal image-reference" href="_images/categorical_LocalArea.png"><img alt="_images/categorical_LocalArea.png" src="_images/categorical_LocalArea.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Categorical feature Local Area.</span><a class="headerlink" href="#categorical-localarea" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="varianced-categorical-businesstype">
+<a class="reference internal image-reference" href="_images/varianced_categorical_BusinessType.png"><img alt="_images/varianced_categorical_BusinessType.png" src="_images/varianced_categorical_BusinessType.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Categorical feature Buiness Type.</span><a class="headerlink" href="#varianced-categorical-businesstype" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>We have used Logistic Regression predicting business survival in Vancouver due to the nature of the data.
+Logistic Regression is effective when the outcome is binary, making it appropriate for predicting whether a business survives or not.
+Easier interpretability of the model results is another reason why we chose Logistic Regression. It’s a linear model that provides coefficients for each predictor variable, making it easy to interpret the impact of each variable on the predicted outcome. This can be crucial for understanding the economic and demographic factors influencing business survival.</p>
 <p>We are using 70% of our data as training data and the remaining 30% is used as test data.</p>
-</section>
-<section id="results">
-<h3>Results<a class="headerlink" href="#results" title="Permalink to this heading">#</a></h3>
-<p>Logistic Regression is performing better and we are getting a cross-validation accuracy of ~80% (79.2%) on whether a business will survive or not. BernoulliNB has slightly lower cross-validation accuracy of 74.6%.</p>
-<p>logreg.fit(X_test_transformed, y_test)
-logreg.score(X_test_transformed, y_test)</p>
-</section>
+<p>Logistic Regression is performing with a cross-validation accuracy of <span class="output text_plain">0.77</span> on whether a business will survive or not.</p>
 <section id="conclusion-and-improvements">
 <h3>Conclusion and Improvements<a class="headerlink" href="#conclusion-and-improvements" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>The Logistic Regression model gives a decent accuracy of ~80% here and can be used as an assistive model for making decisions on whether business licence will be renewed or not.</p></li>
+<li><p>The Logistic Regression model gives a decent accuracy of <span class="output text_plain">0.77</span> here and can be used as an assistive model for making decisions on whether business licence will be renewed or not.</p></li>
 </ul>
 <p>Overall Conclusion</p>
 <ul class="simple">
 <li><p>The analysis conducted in this project provides significant insights into the factors influencing new business survival in Vancouver. The careful selection of predictive variables and the use of appropriate models have yielded results that not only predict business survival but also highlight critical economic and demographic factors influencing it.</p></li>
 <li><p>While the models show good predictive power, further research incorporating additional data sources, advanced modeling techniques, and a deeper temporal analysis could provide even more nuanced insights.</p></li>
 <li><p>The project has the potential to significantly impact policymaking and strategic planning for economic development in urban environments, demonstrating the practical applications of data science in real-world scenarios.</p></li>
-</ul>
-<p>We can further improve the model results:</p>
-<ul class="simple">
-<li><p>Trying out more complex models like Random Forest, Neural Networks etc. (which are currently out of our MDS syllabus scope as of now).</p></li>
-<li><p>By combining other economic and socio-economic factors in our dataset</p></li>
-<li><p>Temporal Analysis: Incorporate time-series analysis to understand how business survival trends have evolved over time and how they correlate with broader economic cycles.</p></li>
-<li><p>Feature Engineering and Selection: Further investigate the impact of different features on business survival. Advanced feature selection techniques and domain expertise can provide insights into which factors are most predictive.</p></li>
-<li><p>Model Interpretability and Business Insights: Enhance model interpretability to derive actionable business insights. Techniques like SHAP (SHapley Additive exPlanations) can help in understanding how different features influence the model’s predictions.</p></li>
 </ul>
 </section>
 </section>
@@ -526,7 +498,6 @@ logreg.score(X_test_transformed, y_test)</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Predicting the Survival of New Businesses in Vancouver</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a><ul class="nav section-nav flex-column">
@@ -534,24 +505,12 @@ logreg.score(X_test_transformed, y_test)</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">Analysis</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results-discussion">Results &amp; Discussion</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda-visualization">EDA &amp; Visualization</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#employee-feepaid">employee &amp; feepaid</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#categorical-features">Categorical Features</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Analysis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-logistic-regression-and-bernoullinb">Why Logistic Regression and BernoulliNB?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-split">Train Test Split</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results-discussion">Results &amp; Discussion</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-and-improvements">Conclusion and Improvements</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
