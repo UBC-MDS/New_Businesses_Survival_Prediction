@@ -172,7 +172,8 @@ features = {
 }
 
 X_df, y_df = split_x_y(df, **features)
-X_transformed = transform(X_df, **features)
+X_transformed = transform(X_df, X_df, y_df, "data/processed/", **features)
+
 
 # split_x_y - Test for correct return type
 def test_split_x_y_return_dataframe():
@@ -182,6 +183,7 @@ def test_split_x_y_return_dataframe():
 # split_x_y - Test for correct return columns
 def test_split_x_y_return_columns():
     assert X_df.columns.tolist() == [c for cols in features.values() for c in cols], f"`split_x_y` return X should have columns: {[c for cols in features.values() for c in cols]}. Return {X_df.columns} instead."
+    assert len(X_df.columns.tolist()) == 9, "Not getting expected no of columns in training dataframe"
 
 # transform - Test for correct return type
 def test_transform_return_dataframe():

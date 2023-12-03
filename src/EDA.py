@@ -39,7 +39,6 @@ def numeric_feature_visualization(data, features):
         
     chart_grid.save('results/figures/numeric_features.png')
 
-
 def fee_paid_visualization(data, feature='FeePaid'):
     """
     Generates a density plot for the 'FeePaid' feature with a restricted x-axis domain, grouped by survival status.
@@ -64,8 +63,9 @@ def fee_paid_visualization(data, feature='FeePaid'):
         title=f'Density Plot of {feature} by Survival Status'
     )
     
-    png_name = f'results/figures/{feature}.png'
+    png_name = f'results/figures/numeric_{feature}.png'
     chart.save(png_name)
+    # return chart
 
 def num_of_employee_visualization(data, feature='NumberofEmployees'):
     """
@@ -90,6 +90,7 @@ def num_of_employee_visualization(data, feature='NumberofEmployees'):
         height=120,
         title=f'Density Plot of {feature} by Survival Status'
     )
+    
     png_name = f'results/figures/{feature}.png'
     chart.save(png_name)
 
@@ -165,8 +166,8 @@ def main(merged_data_path):
     numeric_features = ['GDPValue', 'ConsumerPriceValue', 'EmploymentValue', 'InvestmentConstructionValue'] 
     numeric_feature_visualization(data, numeric_features)
 
-    fee_paid_visualization(data, feature='FeePaid')
-    num_of_employee_visualization(data, feature='NumberofEmployees')
+    num_of_employee_visualization(data)
+    fee_paid_visualization(data)
     
     # Categorical
     categorical_features = ['LocalArea']

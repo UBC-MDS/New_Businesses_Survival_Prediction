@@ -10,6 +10,7 @@ RUN conda install -y matplotlib=3.8.1 \
     vegafusion=1.4.3 \
     vl-convert-python=1.1.0 \
     python=3.11.6 \
-    pytest=7.4.3
+    pytest=7.4.3 \
+    click=8.1.7
 
 COPY . /home/jovyan/DSCI_522_group1/

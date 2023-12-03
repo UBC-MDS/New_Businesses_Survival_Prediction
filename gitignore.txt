@@ -4,3 +4,4 @@
 # Jupyter Notebook
 **.ipynb_checkpoints
 milestone1_draft_eda.ipynb
+.ipynb_checkpoints

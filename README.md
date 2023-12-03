@@ -70,8 +70,14 @@ python src/DataPreprocess.py --raw_business_path=data/raw/business.csv \
 
 # EDA (to save png files)
 python  src/EDA.py --merged_data_path=data/processed/business_econ.csv
-```
 
+# Modeling (to train\fit the model)
+python src/Modeling.py --business-data data/processed/business_econ.csv --seed 123 --pipeline-to results/models/ --test-data-to data/processed/
+
+# Evaluation (to check model performance on test data)
+python src/evaluation.py --test-data data/processed --pipeline-from results/models --results-to results/tables
+
+```
 
 #### Clean up
 
