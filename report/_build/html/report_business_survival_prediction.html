@@ -434,21 +434,21 @@ Easier interpretability of the model results is another reason why we chose Logi
 <figure class="align-default" id="test-scores-df" style="width: 400px">
 <div class="output text_html"><style type="text/css">
 </style>
-<table id="T_c9a88">
+<table id="T_58c21">
   <thead>
     <tr>
-      <th id="T_c9a88_level0_col0" class="col_heading level0 col0" >Accuracy</th>
-      <th id="T_c9a88_level0_col1" class="col_heading level0 col1" >F1_Score</th>
-      <th id="T_c9a88_level0_col2" class="col_heading level0 col2" >Precision</th>
-      <th id="T_c9a88_level0_col3" class="col_heading level0 col3" >Recall</th>
+      <th id="T_58c21_level0_col0" class="col_heading level0 col0" >Accuracy</th>
+      <th id="T_58c21_level0_col1" class="col_heading level0 col1" >F1_Score</th>
+      <th id="T_58c21_level0_col2" class="col_heading level0 col2" >Precision</th>
+      <th id="T_58c21_level0_col3" class="col_heading level0 col3" >Recall</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_c9a88_row0_col0" class="data row0 col0" >0.770000</td>
-      <td id="T_c9a88_row0_col1" class="data row0 col1" >0.860000</td>
-      <td id="T_c9a88_row0_col2" class="data row0 col2" >0.790000</td>
-      <td id="T_c9a88_row0_col3" class="data row0 col3" >0.950000</td>
+      <td id="T_58c21_row0_col0" class="data row0 col0" >0.770000</td>
+      <td id="T_58c21_row0_col1" class="data row0 col1" >0.860000</td>
+      <td id="T_58c21_row0_col2" class="data row0 col2" >0.790000</td>
+      <td id="T_58c21_row0_col3" class="data row0 col3" >0.950000</td>
     </tr>
   </tbody>
 </table>
@@ -457,7 +457,52 @@ Easier interpretability of the model results is another reason why we chose Logi
 </figcaption>
 </figure>
 <p>Our prediction model performed quite well on test data, with a final overall accuracy of <span class="pasted-text">0.77</span> and F1-score of <span class="pasted-text">0.86</span>.</p>
-<p>Other indicators that our model performed well come from the confusion matrix, where it only made <span class="pasted-text">862</span> mistakes. However all <span class="pasted-text">862</span> mistakes were predicting certain businesses would thrive when they were actually at risk, given the implications this has for the economy, this model can be used as a reference for policymakers and authorities (<code class="xref std std-numref docutils literal notranslate"><span class="pre">Figure</span> <span class="pre">{number}</span></code>).</p>
+<p>Other indicators that our model performed well come from the confusion matrix, where it only made <span class="pasted-text">862</span> mistakes. However all <span class="pasted-text">862</span> mistakes were predicting certain businesses would thrive when they were actually at risk, given the implications this has for the economy, this model can be used as a reference for policymakers and authorities (<a class="reference internal" href="#confusion-df"><span class="std std-numref">Figure 6</span></a>).</p>
+<figure class="align-default" id="confusion-df" style="width: 400px">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Predicted: Survived</th>
+      <th>Predicted 1</th>
+    </tr>
+    <tr>
+      <th>Actual label:</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Actual 0</th>
+      <td>1516</td>
+      <td>4513</td>
+    </tr>
+    <tr>
+      <th>Actual 1</th>
+      <td>862</td>
+      <td>16926</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Confusion matrix from best model on the test data.</span><a class="headerlink" href="#confusion-df" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <section id="improvements">
 <h3>Improvements<a class="headerlink" href="#improvements" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
