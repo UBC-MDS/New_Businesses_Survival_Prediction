@@ -22,6 +22,9 @@ from sklearn.metrics import precision_score, recall_score
 
 def main(test_data, pipeline_from, results_to):
 
+    if not os.path.exists('results/tables'):
+        os.makedirs('results/tables')
+    
     test_df = pd.read_csv(os.path.join(test_data, "license_test.csv"))
     
     y_test = test_df["survival_status"]

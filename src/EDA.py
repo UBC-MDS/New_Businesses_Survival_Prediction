@@ -115,6 +115,10 @@ def varianced_categorical_feature_visualization(data, feature):
 @click.option('--merged_data_path') # merged_data_path = 'data/processed/business_econ.csv'
 
 def main(merged_data_path):
+
+    if not os.path.exists('results/figures'):
+        os.makedirs('results/figures')
+        
     # Load final merged data
     data = pd.read_csv(merged_data_path, low_memory=False)
 

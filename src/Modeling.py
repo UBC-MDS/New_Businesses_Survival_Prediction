@@ -98,11 +98,9 @@ def split_x_y(df, word_features, categorical_features, numeric_features):
 @click.option('--seed', type=int, help="Random seed", default=123)
 def main(business_data, test_data_to, pipeline_to, seed):
 
-    #business econ
-    #seed or random state
-    #--pipeline-to model save
-    #-save transformer, might need it later
-    # save score?
+    if not os.path.exists('results/models'):
+        os.makedirs('results/models')
+
     business_econ = pd.read_csv(business_data)
     train_df, test_df = train_test_split(business_econ, test_size=0.3, random_state=seed)
 
