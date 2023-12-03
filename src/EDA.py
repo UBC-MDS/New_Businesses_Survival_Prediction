@@ -36,7 +36,7 @@ def numeric_feature_visualization(data, features):
     chart_grid = alt.vconcat(*[
         alt.hconcat(*charts_numeric[i:i+2]) for i in range(0, len(charts_numeric), 2)
     ])
-    
+        
     chart_grid.save('results/figures/numeric_features.png')
 
 def fee_paid_visualization(data, feature='FeePaid'):
@@ -91,9 +91,8 @@ def num_of_employee_visualization(data, feature='NumberofEmployees'):
         title=f'Density Plot of {feature} by Survival Status'
     )
     
-    png_name = f'results/figures/numeric_{feature}.png'
+    png_name = f'results/figures/{feature}.png'
     chart.save(png_name)
-    # return chart
 
 def categorical_feature_visualization(data, feature):
     """
@@ -117,8 +116,6 @@ def categorical_feature_visualization(data, feature):
         x='independent', 
         y='independent'
     ).properties(
-        width=180,
-        height=180,
         title=f'Frequency of {feature} by Survival Status'
     )
 
@@ -148,20 +145,20 @@ def varianced_categorical_feature_visualization(data, feature='BusinessType'):
         column='survival_status:O',  
         columns=2 
     ).properties(
-        title=f'Frequency of Top 20 {feature} by Survival Status',
-        width=180,
-        height=180
+        title=f'Frequency of Top 20 {feature} by Survival Status'
     )
 
     png_name = f'results/figures/varianced_categorical_{feature}.png'
     chart.save(png_name)
 
 
-
 @click.command()
 @click.option('--merged_data_path') # merged_data_path = 'data/processed/business_econ.csv'
 
 def main(merged_data_path):
+    if not os.path.exists('results/figures'):
+        os.makedirs('results/figures')
+
     # Load final merged data
     data = pd.read_csv(merged_data_path, low_memory=False)
 
