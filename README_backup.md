@@ -10,7 +10,7 @@ This analysis aims to predict the survival of new businesses in Vancouver by exa
 
 ## Report
 
-The final report can be found [here](https://ubc-mds.github.io/New_Businesses_Survival_Prediction/milestone1_report.html).
+The final report can be found [here](https://ubc-mds.github.io/New_Businesses_Survival_Prediction/report_business_survival_prediction.html).
 
 
 ## Dependencies
@@ -33,9 +33,7 @@ docker-compose up
 ```
 3. **Open Jupyterlab:** After running the container, you will get a URL in your terminal. Copy that URL and paste it in your browswer. Change the port mentioned in URL from 8888 to 8889. Jupyter Lab/Notebook will open.
 
-4. **Change Directory:** Now we need to open our main project report (.ipynb) file. Change directory by clicking on "DSCI_522_group1" and then next open "src" directory. Click on "milestone1_report.ipynb" to open the desired notebook.
-
-5. **Run Notebook:** You can reproduces our analysis by doing "Run All" from the Run tab in jupyter.
+4. **Change Directory:** Change directory by clicking on "DSCI_522_group1".
 
 
 #### Running the analysis
@@ -78,6 +76,11 @@ python src/Modeling.py --business-data data/processed/business_econ.csv --seed 1
 python src/evaluation.py --test-data data/processed --pipeline-from results/models --results-to results/tables
 
 ```
+
+### Potential issue with data
+1. As the data/raw/business-license.csv is too large to upload to Github, please run the script to download all the necessary data files, rather than only look at the data folder.
+2. Make sure the connection is great when loading the data by the script. If there raises any error message like: No such file 'temp.zip', please try to re-run the script again because this may be caused by connection problems during the download process.
+The script should be run in the repo's folder (working directory should be New_Businesses_Survival_Prediction ).
 
 #### Clean up
 
