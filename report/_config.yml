@@ -1,0 +1,18 @@
+# Book settings
+# Learn more at https://jupyterbook.org/customize/config.html
+
+title: Business survival prediction
+author: "Arturo Boquin, Beth Ou Yang, Prabhjit Thind, Weiran Zhao"
+date: "2023-11-29"
+sphinx:
+  config:
+    bibtex_reference_style: author_year
+execute:
+  execute_notebooks: force 
+bibtex_bibfiles:
+    - references.bib
+
+sphinx:
+  execute_notebooks: {
+    "cell_tags": "hide",
+  }

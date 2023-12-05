@@ -1,0 +1,17 @@
+name: 522_group1
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11.6
+  - pandas=2.1.3
+  - altair=5.1.2
+  - ipykernel=6.26.0
+  - vegafusion-python-embed[version='>=1.4.0']=1.4.3
+  - vegafusion[version='>=1.4.0']=1.4.3
+  - vl-convert-python[version='>=0.14.0']=1.1.0
+  - matplotlib=3.8.1
+  - scikit-learn=1.3.2
+  - pytest=7.4.3
+  - click=8.1.7
+prefix: /Users/oybb/miniconda3/envs/522_group1
