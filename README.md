@@ -10,7 +10,7 @@ This analysis aims to predict the survival of new businesses in Vancouver by exa
 
 ## Report
 
-The final report can be found [here](https://ubc-mds.github.io/New_Businesses_Survival_Prediction/milestone1_report.html).
+The final report can be found [here](https://ubc-mds.github.io/New_Businesses_Survival_Prediction/report_business_survival_prediction.html).
 
 
 ## Dependencies
