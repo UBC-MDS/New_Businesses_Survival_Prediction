@@ -11,3 +11,8 @@ execute:
   execute_notebooks: force 
 bibtex_bibfiles:
     - references.bib
+
+sphinx:
+  execute_notebooks: {
+    "cell_tags": "hide",
+  }
