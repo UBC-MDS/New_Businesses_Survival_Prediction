@@ -396,17 +396,28 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../results/models/lr_license_renewal_pipeline.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">business_fit</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;sklearn&#39;
+</pre></div>
+</div>
+</div>
 </details>
 </div>
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
-<p>This study focuses on forecasting the viability of new businesses in Vancouver by analyzing a range of economic and demographic variables. We utilize data from the City business license registry (City of Vancouver, 2023) and supplementary sources such as Statistics Canada (2023) to assess the impact of factors like location, industry type, and economic conditions on the longevity of businesses.</p>
+<p>This study focuses on forecasting the viability of new businesses in Vancouver by analyzing a range of economic and demographic variables. We utilize data from the City business license registry  [&#64;cityvan] and supplementary sources such as Statistics Canada [&#64;sc] to assess the impact of factors like location, industry type, and economic conditions on the longevity of businesses.</p>
 <p>Our approach involves developing a classification model using logistic regression. This model leverages the aforementioned datasets to ascertain the likelihood of a new business sustaining operations over a two-year period. The effectiveness of our final model was substantiated through its performance on a separate test dataset, achieving an accuracy of <span class="output text_plain">0.77</span>. Out of <span class="pasted-text">27697</span> test data cases, it accurately forecasted the survival of <span class="pasted-text">21311</span> businesses.</p>
 <p>Nevertheless, the model incorrectly classified <span class="pasted-text">1130</span> cases as false negatives, erroneously indicating that certain businesses would thrive when they were actually at risk. These inaccuracies could potentially lead to detrimental outcomes, especially in scenarios involving targeted interventions for businesses. Therefore, we advocate for further research and refinement of this predictive model before its implementation as a tool for policy makers and economic authorities.</p>
 </section>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
-<p>The business environment in Vancouver is dynamic, influenced by economic trends, demographic changes, and city planning. Accurate prediction of new business survival is essential for both policymakers and entrepreneurs. The central question of this project is: “Can we predict the survival of new businesses in Vancouver?” To answer this, we leveraged data from Vancouver’s open data portal [cityvan], supplemented with economic and census data [sc]. Analysis was conducted using Python packages including Pandas [mckinney2010data], Altair [vanderplas2018altair], and scikit-learn [pedregosa2011scikit].</p>
+<p>The business environment in Vancouver is dynamic, influenced by economic trends, demographic changes, and city planning. Accurate prediction of new business survival is essential for both policymakers and entrepreneurs. The central question of this project is: “Can we predict the survival of new businesses in Vancouver?” To answer this, we leveraged data from Vancouver’s open data portal [&#64;cityvan], supplemented with economic and census data [&#64;sc]. Analysis was conducted using Python packages including Pandas [&#64;mckinney2010data], Altair [&#64;vanderplas2018altair], and scikit-learn [&#64;pedregosa2011scikit].</p>
 </section>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
@@ -470,21 +481,21 @@ Easier interpretability of the model results is another reason why we chose Logi
 <figure class="align-default" id="test-scores-df" style="width: 400px">
 <div class="output text_html"><style type="text/css">
 </style>
-<table id="T_1cc31">
+<table id="T_aa18d">
   <thead>
     <tr>
-      <th id="T_1cc31_level0_col0" class="col_heading level0 col0" >Accuracy</th>
-      <th id="T_1cc31_level0_col1" class="col_heading level0 col1" >F1_Score</th>
-      <th id="T_1cc31_level0_col2" class="col_heading level0 col2" >Precision</th>
-      <th id="T_1cc31_level0_col3" class="col_heading level0 col3" >Recall</th>
+      <th id="T_aa18d_level0_col0" class="col_heading level0 col0" >Accuracy</th>
+      <th id="T_aa18d_level0_col1" class="col_heading level0 col1" >F1_Score</th>
+      <th id="T_aa18d_level0_col2" class="col_heading level0 col2" >Precision</th>
+      <th id="T_aa18d_level0_col3" class="col_heading level0 col3" >Recall</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_1cc31_row0_col0" class="data row0 col0" >0.770000</td>
-      <td id="T_1cc31_row0_col1" class="data row0 col1" >0.860000</td>
-      <td id="T_1cc31_row0_col2" class="data row0 col2" >0.780000</td>
-      <td id="T_1cc31_row0_col3" class="data row0 col3" >0.940000</td>
+      <td id="T_aa18d_row0_col0" class="data row0 col0" >0.770000</td>
+      <td id="T_aa18d_row0_col1" class="data row0 col1" >0.860000</td>
+      <td id="T_aa18d_row0_col2" class="data row0 col2" >0.780000</td>
+      <td id="T_aa18d_row0_col3" class="data row0 col3" >0.940000</td>
     </tr>
   </tbody>
 </table>
