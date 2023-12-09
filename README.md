@@ -35,6 +35,16 @@ docker-compose up
 
 4. **Change Directory:** Change directory by clicking on "DSCI_522_group1".
 
+### Usage via GNU Makefile
+1. Inside the docker container, open up a terminal. Go to the project root directory. This directory has a makefile for running our analysis end to end.
+
+2. Initially run the below command to remove existing directories and files for results:
+
+   ```make clean```
+   
+4. To run the analysis end to end use below command:
+
+   ```make all```
 
 #### Running the analysis
 
