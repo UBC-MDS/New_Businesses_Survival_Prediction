@@ -36,3 +36,12 @@ All notable changes to this project will be documented in this file.
 2. **Feedback**: running into an error when running the notebook. Error: `chart_grid`.
     - Narration: Removed `chart_grid` from the report file to prevent NameError.
     - Evidence: [commit 03976ce](https://github.com/UBC-MDS/New_Businesses_Survival_Prediction/commit/03976cee5a790d480c5a9162275d60890114c11a)
+
+## Feedback from peer review
+
+### Improvements
+
+1. **Feedback**: Lack of DOI link for references, affecting citation accessibility.
+    - Narration: Included DOI links for references to enhance citation accessibility and improve writing and explanation.
+    - Evidence: [commit 64a6eb4](https://github.com/UBC-MDS/New_Businesses_Survival_Prediction/commit/64a6eb44dacd391c849dbc696cb37e65fc4c47fa)
+  
