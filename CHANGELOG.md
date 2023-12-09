@@ -18,7 +18,7 @@ All notable changes to this project will be documented in this file.
     - Evidence: [commit 482ccaa](https://github.com/UBC-MDS/New_Businesses_Survival_Prediction/commit/482ccaa4509eee4d17a6e0e0495b296ff3b8a394)
       
 4. **Feedback**: Broke the golden rule of machine learning.
-    - Narration: Data leakage was happening causing bias on the test results. Fixed it in Modeling.py file using proper fit functions and column transformers.
+    - Narration: Data leakage was happening causing bias on the test results. Fixed it in Modeling.py file by using column transformers and subsequent fit.
     - Evidence: [commit dafd4af](https://github.com/UBC-MDS/New_Businesses_Survival_Prediction/commit/dafd4afce08b42f1b46404e5288604fb488071a6)
  
 ## Feedback from Milestone 2
