@@ -16,7 +16,11 @@ All notable changes to this project will be documented in this file.
 3. **Feedback**: data - Raw and processed/intermediate data are mixed in the data directory (they should be in subfolders, or at least clearly labelled)
     - Narration: Separately saved the data in the ‘raw’ and ‘processed’ folders. However, in order to prevent LSF issue, we have ignore `.csv` files in our `.gitignore`. By running the `DataFetch.py` and `DataProcessed.py` via command lines, the folders will be automatically created and data files will save in the user’s local machine.
     - Evidence: [commit 482ccaa](https://github.com/UBC-MDS/New_Businesses_Survival_Prediction/commit/482ccaa4509eee4d17a6e0e0495b296ff3b8a394)
-
+      
+4. **Feedback**: Broke the golden rule of machine learning.
+    - Narration: Data leakage was happening causing bias on the test results. Fixed it in Modeling.py file using proper fit functions and column transformers.
+    - Evidence: [commit dafd4af](https://github.com/UBC-MDS/New_Businesses_Survival_Prediction/commit/dafd4afce08b42f1b46404e5288604fb488071a6)
+ 
 ## Feedback from Milestone 2
 
 ### Improvements
