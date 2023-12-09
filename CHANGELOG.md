@@ -45,3 +45,6 @@ All notable changes to this project will be documented in this file.
     - Narration: Included DOI links for references to enhance citation accessibility and improve writing and explanation.
     - Evidence: [commit 64a6eb4](https://github.com/UBC-MDS/New_Businesses_Survival_Prediction/commit/64a6eb44dacd391c849dbc696cb37e65fc4c47fa)
   
+2. **Feedback**: Consider clarifying the rationale behind choosing a two-year window for predicting business survival.
+    - Narration: Included the rationale.
+    - Evidence: [commit 5ca58a2](https://github.com/UBC-MDS/New_Businesses_Survival_Prediction/commit/5ca58a2c10b89519fce37720637cfb34fa598410)
